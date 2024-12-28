@@ -1,0 +1,42 @@
+<!-- home.html -->
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Home - Django App{% endblock %}
+
+{% block content %}
+
+<main class="mt-5 text-black bg-white rounded-xl border-t border-gray-200 p-2.5 shadow-lg backdrop-blur-lg px-5 py-10 ">
+    
+        <h1 class="font-bold text-center text-3xl text-black">Support Center</h1>
+        <hr class="my-10 border border-gray-300" />
+    
+        <div class="mx-auto mt-8 p-6 bg-white border border-gray-300 rounded-lg shadow-md" style="max-width: 800px;">
+            <form action="" method="POST" enctype="multipart/form-data">
+           
+                <div class="mb-6">
+                    <label for="request_for" class="block mb-2 text-sm font-medium text-gray-900">Request For</label>
+                    <input type="text" id="request_for" name="request_for" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                </div>
+    
+                <div class="mb-6">
+                    <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                    <textarea id="description" name="description" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required></textarea>
+                </div>
+    
+                <div class="mb-6">
+                    <label class="block mb-2 text-sm font-medium text-gray-900" for="multiple_files">Upload Snap Shot</label>
+                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" name="files[]" type="file" multiple>
+                </div>
+    
+                <div class="text-center">
+                    <button type="submit" class="w-full rounded-xl bg-green-800 text-white font-bold text-lg py-3 border hover:bg-green-700">
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+
+</main>
+
+
+{% endblock %}

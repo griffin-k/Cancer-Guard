@@ -1,0 +1,261 @@
+<!-- home.html -->
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Home - Django App{% endblock %}
+
+{% block content %}
+<style>
+    .chatbox {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        height: 100%; 
+    }
+
+    .chat-header {
+        background: linear-gradient(135deg, #2C3E50 0%, #4CA1AF 100%);
+        color: #fff;
+        padding: 25px;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #ddd;
+        border-bottom-left-radius: 46px;
+        margin-bottom: 10px;
+    }
+
+    .logo {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .chat-title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .status {
+        font-size: 12px;
+        padding: 5px 10px;
+        width: 70px;
+        color: #365f32;
+        background-color: white;
+        border-radius: 20px;
+    }
+
+    .chat-body {
+        flex: 1;
+        padding: 10px;
+        overflow-y: auto; /* Make the chat body scrollable */
+        background-color: #f9f9f9;
+        display: flex;
+        flex-direction: column;
+        max-height: 70%; 
+    }
+
+    .message-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .bot-message-container {
+        align-self: flex-start;
+    }
+
+    .user-message-container {
+        align-self: flex-end;
+        flex-direction: row-reverse;
+    }
+
+    .avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        margin: 0 10px;
+    }
+
+    .message {
+        padding: 10px;
+        border-radius: 20px;
+        font-size: 14px;
+        max-width: 70%;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+    }
+
+    .bot-message {
+        background-color: #e0e0e0;
+        color: #000;
+        border-radius: 20px 20px 20px 0;
+    }
+
+    .user-message {
+        background-color: #0096FF;
+        color: #fff;
+        border-radius: 20px 20px 0 20px;
+    }
+
+    .chat-footer {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border-top: 1px solid #ddd;
+        background-color: #fff;
+    }
+
+    #user-input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        outline: none;
+        font-size: 14px;
+        margin-right: 10px;
+    }
+
+    .send-button {
+        background-color: #0096FF;
+        border: none;
+        padding: 10px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .send-button:hover {
+        background-color: gray;
+    }
+
+    .send-button img {
+        width: 16px;
+        height: 16px;
+    }
+</style>
+
+<main class="mt-5 h-[80vh]  text-black bg-white rounded-xl border-t border-gray-200 p-2.5 shadow-lg backdrop-blur-lg px-5 py-10 ">
+    <div class="chatbox">
+        <div class="chat-header">
+            <img src="https://i.ibb.co/HHQhpNM/mydoc.png" alt="DR Logo" class="logo">
+            <div class="chat-info">
+                <div class="chat-title">Virtual Dermatologist</div>
+                <div class="status-container">
+                    <div class="status">Available</div>
+                </div>
+            </div>
+            <i class="fas fa-sync-alt refresh-icon" onclick="refreshStatus()" style="cursor: pointer; margin-left: auto;"></i>
+        </div>
+        <div class="chat-body">
+            <div id="chat-content">
+                <div class="message-container bot-message-container">
+                    <img src="https://cdn.dribbble.com/userupload/2798815/file/original-d8b75e59492e979ad996c39eac216499.png?resize=2048x1536&vertical=center" alt="Bot Avatar" class="avatar">
+                    <div class="message bot-message">Hi! What can I help you with?</div>
+                </div>
+            </div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="user-input" placeholder="Ask me anything..." />
+            <button class="send-button" onclick="sendMessage()">
+                <img src="https://cdn-icons-png.flaticon.com/512/724/724954.png" alt="Send Arrow">
+            </button>
+        </div>
+    </div>
+    <script>
+        function refreshStatus() {
+            // Clear all chat messages
+            const chatContent = document.getElementById('chat-content');
+            chatContent.innerHTML = '';
+
+            // Scroll to the top
+            const chatBody = document.querySelector('.chat-body');
+            chatBody.scrollTop = 0;
+        }
+
+        async function sendMessage() {
+            const userInputElement = document.getElementById('user-input');
+            const userInput = userInputElement.value.trim();
+            if (userInput !== '') {
+                const chatContent = document.getElementById('chat-content');
+
+                // Add user message
+                const userMessageContainer = document.createElement('div');
+                userMessageContainer.className = 'message-container user-message-container';
+                userMessageContainer.innerHTML = `
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC6iPDSqcgCcAtdEz_rPY0B-sxqMd7hz0Hlg&s" alt="User Avatar" class="avatar">
+                    <div class="message user-message">${userInput}</div>
+                `;
+                chatContent.appendChild(userMessageContainer);
+
+                userInputElement.value = '';
+                scrollToBottom();
+
+                // Add bot typing indicator
+                const typingIndicatorContainer = document.createElement('div');
+                typingIndicatorContainer.className = 'message-container bot-message-container';
+                typingIndicatorContainer.innerHTML = `
+                    <img src="https://cdn.dribbble.com/userupload/2798815/file/original-d8b75e59492e979ad996c39eac216499.png?resize=2048x1536&vertical=center" alt="Bot Avatar" class="avatar">
+                    <div class="message bot-message">Dr is Thinking...</div>
+                `;
+                chatContent.appendChild(typingIndicatorContainer);
+
+                scrollToBottom();
+
+                try {
+                    const response = await fetch('http://localhost:8000/skincare/consult/chat', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ user_input: userInput })
+                    });
+
+                    const data = await response.json();
+
+                    // Remove typing indicator
+                    chatContent.removeChild(typingIndicatorContainer);
+
+                    // Add bot response with stream effect
+                    const botMessageContainer = document.createElement('div');
+                    botMessageContainer.className = 'message-container bot-message-container';
+                    botMessageContainer.innerHTML = `
+                        <img src="https://cdn.dribbble.com/userupload/2798815/file/original-d8b75e59492e979ad996c39eac216499.png?resize=2048x1536&vertical=center" alt="Bot Avatar" class="avatar">
+                        <div class="message bot-message"></div>
+                    `;
+                    chatContent.appendChild(botMessageContainer);
+
+                    const botMessage = botMessageContainer.querySelector('.message');
+                    const responseText = data.response;
+                    let i = 0;
+
+                    function typeStream() {
+                        if (i < responseText.length) {
+                            botMessage.innerHTML += responseText[i];
+                            i++;
+                            setTimeout(typeStream, 70); // Adjust the delay to control typing speed
+                        }
+                    }
+
+                    typeStream();
+
+                } catch (error) {
+                    console.error(error);
+                }
+
+                scrollToBottom();
+            }
+        }
+
+        function scrollToBottom() {
+            const chatBody = document.querySelector('.chat-body');
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+    </script>
+</main>
+
+{% endblock %}
