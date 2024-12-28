@@ -7,16 +7,18 @@
     <title>{% block title %}Django App{% endblock %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
+    {% comment %} overflow-hidden {% endcomment %}
 </head>
-<body class="font-sans bg-gray-200 ">
+<body class="font-sans bg-gray-200 h-full ">
+
+
     <nav class="bg-white rounded-bl-3xl rounded-br-3xl p-4">
         <div class="container mx-auto flex justify-between items-center">
             <a href="/" class="text-black text-lg font-semibold">Cancer Guard</a>
             <div>
-                <a href="#" class="text-black mx-2">Home</a>
-                <a href="/contact" class="text-black mx-2">Contact</a>
-                <a href="/about" class="text-black mx-2">About</a>
+                <a href="#" class="text-black mx-2">Home.</a>
+                <a href="/ask_questions" class="text-black mx-2">Ask DR.</a>
+                <a href="/about" class="text-black mx-2">About Us.</a>
             </div>
         </div>
     </nav>
@@ -28,7 +30,7 @@
             class="z-20 flex shrink-0 grow-0 justify-around gap-4 border-t border-gray-200 bg-white p-2.5 shadow-lg backdrop-blur-lg dark:border-slate-600/60 dark:bg-slate-800/50 fixed top-2/4 -translate-y-2/4 left-6 min-h-[auto] min-w-[64px] flex-col rounded-lg border"
             >
             <a
-                href="#profile"
+                href="/ask_questions"
                 class="flex aspect-square min-h-[32px] w-16 flex-col items-center justify-center gap-1 rounded-md p-1.5 bg-indigo-50 text-indigo-600 dark:bg-sky-900 dark:text-sky-50"
             >
                 <!-- HeroIcon - User -->
@@ -38,7 +40,7 @@
             </a>
         
             <a
-                href="#analytics"
+                href="/cancer_prediction"
                 class="flex aspect-square min-h-[32px] w-16 flex-col items-center justify-center gap-1 rounded-md p-1.5 text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-slate-800"
             >
                 <!-- HeroIcon - Chart Bar -->
@@ -48,7 +50,7 @@
             </a>
         
             <a
-                href="#settings"
+                href="/support"
                 class="flex aspect-square min-h-[32px] w-16 flex-col items-center justify-center gap-1 rounded-md p-1.5 text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-slate-800"
             >
             <!-- HeroIcon - Cog-6-tooth -->
@@ -60,7 +62,7 @@
             <hr class="dark:border-gray-700/60" />
         
             <a
-                href="/"
+                href="/about"
                 class="flex h-16 w-16 flex-col items-center justify-center gap-1 text-fuchsia-900 dark:text-gray-400"
             >
             <!-- HeroIcon - Home Modern -->

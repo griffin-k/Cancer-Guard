@@ -209,7 +209,7 @@
                 scrollToBottom();
 
                 try {
-                    const response = await fetch('http://localhost:8000/skincare/consult/chat', {
+                    const response = await fetch('http://localhost:8081/skincare/consult/chat', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ user_input: userInput })
