@@ -1,13 +1,66 @@
-<!-- home.html -->
 {% extends 'dashboard/base.html' %}
 
-{% block title %}Home - Django App{% endblock %}
+{% block title %}About Us - Cancer Guard{% endblock %}
 
 {% block content %}
+<main class="mt-5 bg-white rounded-xl border-t border-gray-200 p-8 shadow-lg backdrop-blur-lg max-w-6xl mx-auto text-gray-800">
 
-<main class="mt-5 text-black bg-white rounded-xl border-t border-gray-200 p-2.5 shadow-lg backdrop-blur-lg px-5 py-10 ">
+  <!-- Header Section -->
+  <section class="text-center mb-16">
+    <h1 class="text-5xl font-extrabold text-purple-700 mb-4">About Cancer Guard</h1>
+    <p class="max-w-3xl mx-auto text-lg">
+      Empowering Pakistan with AI-driven early cancer risk detection and dermatology support.
+    </p>
+  </section>
+
+  <!-- Mission & Vision -->
+  <section class="grid md:grid-cols-2 gap-12 mb-20">
+    <div>
+      <h2 class="text-3xl font-semibold text-purple-600 mb-4">Our Mission</h2>
+      <p>
+        To provide accessible, reliable, and privacy-respecting AI tools that help detect cancer risks early and offer dermatology assessments tailored for Pakistani users.
+      </p>
+    </div>
+    <div>
+      <h2 class="text-3xl font-semibold text-pink-600 mb-4">Our Vision</h2>
+      <p>
+        To revolutionize healthcare in Pakistan by integrating cutting-edge AI with local healthcare needs, making early cancer detection and skin health accessible for everyone.
+      </p>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section>
+    <h2 class="text-4xl font-bold text-center mb-12">Meet Our Team</h2>
+    <div class="grid md:grid-cols-2 self-center gap-10">
+    
+      <div class="bg-pink-50 p-6 rounded-xl shadow text-center">
+        <div class="inline-block w-20 h-20 mb-4 rounded-full bg-pink-400 flex items-center justify-center text-white font-bold text-xl select-none">AR</div>
+        <h3 class="font-semibold text-xl mb-1">Ali Hassan</h3>
+        <p class="text-pink-600 font-semibold mb-2">AI & ML Engineer</p>
+        <p class="text-gray-700 text-sm">
+          Developer of Cancer Guard's AI models and image analysis tools.
+        </p>
+      </div>
+      <div class="bg-red-50 p-6 rounded-xl shadow text-center">
+        <div class="inline-block w-20 h-20 mb-4 rounded-full bg-red-400 flex items-center justify-center text-white font-bold text-xl select-none">SA</div>
+        <h3 class="font-semibold text-xl mb-1">Maham</h3>
+        <p class="text-red-600 font-semibold mb-2">Product Manager</p>
+        <p class="text-gray-700 text-sm">
+          Leading product vision and ensuring user-centric design and usability.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="bg-purple-600 text-white rounded-xl p-10 mt-20 text-center shadow-lg">
+    <h2 class="text-3xl font-bold mb-4">Interested in Joining Us?</h2>
+    <p class="mb-6 max-w-2xl mx-auto">
+      Whether you're a medical expert, developer, or supporter, we welcome your involvement.
+    </p>
+  
+  </section>
 
 </main>
-
-
 {% endblock %}

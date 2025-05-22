@@ -282,3 +282,7 @@ def view_about(request):
 
 def view_home(request):
     return render(request, "dashboard/home.html")
+
+
+def view_index(request):
+    return render(request, "dashboard/index.html")
