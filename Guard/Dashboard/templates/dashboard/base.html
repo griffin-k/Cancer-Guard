@@ -1,86 +1,62 @@
-<!-- base.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth" >
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Django App{% endblock %}</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    {% comment %} overflow-hidden {% endcomment %}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}Cancer Guard{% endblock %}</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    rel="stylesheet"
+  />
 </head>
-<body class="font-sans bg-gray-200 h-full ">
+<body class="bg-gradient-to-br from-purple-100 via-pink-100 to-purple-50 min-h-screen font-sans text-gray-900">
 
-
-    <nav class="bg-white rounded-bl-3xl rounded-br-3xl p-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="/" class="text-black text-lg font-semibold">Cancer Guard</a>
-            <div>
-                <a href="#" class="text-black mx-2">Home.</a>
-                <a href="/ask_questions" class="text-black mx-2">Ask DR.</a>
-                <a href="/about" class="text-black mx-2">About Us.</a>
-            </div>
-        </div>
-    </nav>
-
-    <div class="flex ">
-        <!-- Sidebar -->
-        <div class="w-[150px] bg-gray-200 text-white p-4">
-            <nav
-            class="z-20 flex shrink-0 grow-0 justify-around gap-4 border-t border-gray-200 bg-white p-2.5 shadow-lg backdrop-blur-lg dark:border-slate-600/60 dark:bg-slate-800/50 fixed top-2/4 -translate-y-2/4 left-6 min-h-[auto] min-w-[64px] flex-col rounded-lg border"
-            >
-            <a
-                href="/ask_questions"
-                class="flex aspect-square min-h-[32px] w-16 flex-col items-center justify-center gap-1 rounded-md p-1.5 bg-indigo-50 text-indigo-600 dark:bg-sky-900 dark:text-sky-50"
-            >
-                <!-- HeroIcon - User -->
-                
-                <i class="fas fa-stethoscope"></i>
-                <small class="text-center text-xs font-medium"> ASK DR </small>
-            </a>
-        
-            <a
-                href="/cancer_prediction"
-                class="flex aspect-square min-h-[32px] w-16 flex-col items-center justify-center gap-1 rounded-md p-1.5 text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-slate-800"
-            >
-                <!-- HeroIcon - Chart Bar -->
-               
-                <i class="fas fa-ribbon"></i>
-                <small class="text-center text-xs font-medium"> Cancer Predication </small>
-            </a>
-        
-            <a
-                href="/support"
-                class="flex aspect-square min-h-[32px] w-16 flex-col items-center justify-center gap-1 rounded-md p-1.5 text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-slate-800"
-            >
-            <!-- HeroIcon - Cog-6-tooth -->
-    
-            <i class="fas fa-phone-alt"></i> 
-                <small class="text-center text-xs font-medium"> Contact </small>
-            </a>
-        
-            <hr class="dark:border-gray-700/60" />
-        
-            <a
-                href="/about"
-                class="flex h-16 w-16 flex-col items-center justify-center gap-1 text-fuchsia-900 dark:text-gray-400"
-            >
-            <!-- HeroIcon - Home Modern -->
-               
-            <i class="fas fa-info-circle"></i>
-                <small className="text-xs font-medium">About</small>
-            </a>
-            </nav>
-        </div>
-
-        <!-- Main Content Area -->
-        <div class="flex-1 bg-gray-200 p-6 ">
-            {% block content %}
-         
-
-            {% endblock %}
-        </div>
+  <!-- Top Navigation -->
+  <nav class="bg-white shadow-md rounded-b-3xl px-6 py-4 sticky top-0 z-30">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="/" class="text-2xl font-extrabold tracking-wide text-purple-700 hover:text-purple-900 transition">
+        Cancer Guard
+      </a>
+      <div class="space-x-6">
+        <a href="/" class="text-purple-700 hover:text-purple-900 font-semibold transition">Home</a>
+        <a href="/ask_questions" class="text-purple-700 hover:text-purple-900 font-semibold transition">Ask DR</a>
+        <a href="/about" class="text-purple-700 hover:text-purple-900 font-semibold transition">About Us</a>
+      </div>
     </div>
+  </nav>
 
+  <div class="flex max-w-7xl mx-auto mt-8 px-4 sm:px-6 lg:px-8 gap-6">
+    <!-- Sidebar -->
+    <aside class="w-28 bg-white rounded-3xl shadow-lg p-5 sticky top-24 self-start">
+      <nav class="flex flex-col gap-6 text-center">
+        <a href="/ask_questions" class="group flex flex-col items-center gap-1 rounded-2xl p-3 bg-purple-100 text-purple-700 hover:bg-purple-200 transition">
+          <i class="fas fa-stethoscope text-2xl group-hover:text-purple-900"></i>
+          <span class="text-xs font-semibold tracking-wide">ASK DR</span>
+        </a>
+        <a href="/cancer_prediction" class="group flex flex-col items-center gap-1 rounded-2xl p-3 text-gray-700 hover:bg-purple-100 hover:text-purple-700 transition">
+          <i class="fas fa-ribbon text-2xl group-hover:text-purple-900"></i>
+          <span class="text-xs font-semibold tracking-wide">Cancer Prediction</span>
+        </a>
+        <a href="/support" class="group flex flex-col items-center gap-1 rounded-2xl p-3 text-gray-700 hover:bg-pink-100 hover:text-pink-700 transition">
+          <i class="fas fa-phone-alt text-2xl group-hover:text-pink-900"></i>
+          <span class="text-xs font-semibold tracking-wide">Contact</span>
+        </a>
+        <hr class="border-gray-300 my-4" />
+        <a href="/about" class="group flex flex-col items-center gap-1 rounded-2xl p-3 text-pink-600 hover:bg-pink-200 hover:text-pink-900 transition">
+          <i class="fas fa-info-circle text-2xl group-hover:text-pink-900"></i>
+          <span class="text-xs font-semibold tracking-wide">About</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="flex-1 bg-white rounded-3xl shadow-xl p-8 min-h-[80vh]">
+      {% block content %}
+      {% endblock %}
+    </main>
+  </div>
+  
 </body>
 </html>

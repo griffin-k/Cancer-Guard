@@ -286,3 +286,42 @@ def view_home(request):
 
 def view_index(request):
     return render(request, "dashboard/index.html")
+
+
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib import messages
+
+# --- Signup View ---
+def view_register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)  # Automatically log the user in after signup
+            messages.success(request, "Account created successfully.")
+            return redirect('home')  # Replace with your homepage URL name
+        else:
+            messages.error(request, "Please correct the errors below.")
+    else:
+        form = UserCreationForm()
+
+    return render(request, 'dashboard/register.html', {'form': form})
+
+
+# --- Login View ---
+def view_login(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            messages.success(request, "Login successful.")
+            return redirect('home')  # Replace with your homepage URL name
+        else:
+            messages.error(request, "Invalid username or password.")
+    else:
+        form = AuthenticationForm()
+
+    return render(request, 'dashboard/login.html', {'form': form})
